@@ -6,7 +6,12 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../part2-phonebook && yarn build --prod && cp -r build ../heroku/",
+    "deploy": "git push heroku master",
+    "deploy:full": "yarn build:ui && git add . && git commit -m uibuild && yarn deploy",    
+    "logs:prod": "heroku logs --tail",
+    "push": "git add . && git commit -m autopush && git push"
   },
   "author": "",
   "license": "ISC",
